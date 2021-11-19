@@ -1,13 +1,9 @@
 import React, {useState} from "react";
-import {View, Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
-import {SearchHeader} from "../components";
+import {View, Text, TouchableOpacity, FlatList, ImageBackground, StyleSheet} from 'react-native';
+import {Button, SearchHeader} from "../components";
 import {AllSittings, SearchSittings} from "../services/sittingservice";
-import {SearchReservations} from "../services/reservationservice";
-import {createNativeStackNavigator} from "react-native-screens/native-stack";
-import { NavigationContainer } from '@react-navigation/native';
 
-
-
+//TODO: Styling Flatlist and Flatlist Items
 export function Sittings({ navigation }: any){
 
     const [sittings, setSittings] = useState<any[]>([]);
@@ -32,7 +28,7 @@ export function Sittings({ navigation }: any){
             AllSittings().then(data => setSittings(data));
         }
         else {
-            SearchSittings(searchDate).then(data => setSittings(data))
+            SearchSittings(searchDate).then(data => setSittings(data));
         }
     }
 
@@ -43,11 +39,30 @@ export function Sittings({ navigation }: any){
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <SearchHeader onClick={searchOrGet}/>
-            <ScrollView>
-                <FlatList data={sittings} renderItem={renderSittingItem} keyExtractor={item => item.Id}/>
-            </ScrollView>
+            <ImageBackground source={require('../assets/tablesMobile.png')} resizeMode="cover" style={styles.image}>
+                <View style={styles.innerContainer}>
+                    <FlatList data={sittings} renderItem={renderSittingItem} keyExtractor={item => item.Id}/>
+                </View>
+            </ImageBackground>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    image: {
+        flex: 1,
+        justifyContent: "center",
+        width: 400,
+        height: 800,
+    },
+    innerContainer:{
+        justifyContent: "center",
+        alignItems: 'center',
+        flex: 1,
+    }
+});

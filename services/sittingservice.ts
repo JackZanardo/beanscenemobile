@@ -6,9 +6,9 @@ export function AllSittings() {
         .then(response => response.data);
 }
 
-//SearchSittings: https://beanscenepetersham.azurewebsites.net/api/ApiSitting/api/ApiSitting/GetSittingsByDate?date=yyyy-mm-dd
+//SearchSittings: https://beanscenepetersham.azurewebsites.net/api/ApiSitting/GetSittingsByDate?date=yyyy-mm-dd
 export function SearchSittings(searchTerm: string) {
-    return axios.get('https://beanscenepetersham.azurewebsites.net/api/ApiSitting/api/ApiSitting/GetSittingsByDate?date='+ searchTerm)
+    return axios.get('https://beanscenepetersham.azurewebsites.net/api/ApiSitting/GetSittingsByDate?date='+ searchTerm + '')
         .then(response => response.data);
 }
 

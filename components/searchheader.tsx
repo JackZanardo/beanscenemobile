@@ -1,22 +1,57 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {Button} from './button';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 type HeaderProps = {
     onClick(searchTerm: string): void;
 }
 
+//TODO: Styling of search header
 export function SearchHeader({onClick}: HeaderProps) {
-    const [input, setInput] = useState("");
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-    function onPress(){
-        onClick(input);
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const handleConfirm = (date: any) => {
+        let dateString = ToDateString(date);
+        handleSearch(dateString);
+        hideDatePicker();
+    };
+
+    const handleSearch = (dateString: string) => {
+        onClick(dateString);
     }
+
+    function ToDateString(date: Date) {
+        let ds = date.getFullYear().toString();
+        ds += '-' + (date.getMonth() + 1).toString();
+        if(date.getDate() <= 9){
+            ds += '-0' + date.getDate().toString();
+        }
+        else{
+            ds += '-' + date.getDate().toString();
+        }
+        return ds;
+    }
+
 
     return (
         <View style={styles.container}>
-            <TextInput onChangeText={setInput} value={input} style={styles.input}/>
-            <Button title="Search" onPress={onPress} color='#432e82' />
+            <Button title="All Sittings" onPress={() => onClick("")} color="#30db5e" />
+            <Button title="Search Date" onPress={showDatePicker} color="#bc7be8"/>
+            <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+            />
         </View>
     );
 }
