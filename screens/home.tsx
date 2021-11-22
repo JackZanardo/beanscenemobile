@@ -1,10 +1,10 @@
 import React from "react";
-import {ImageBackground, View, StyleSheet, Text} from 'react-native';
-import {Button} from '../components/button';
+import { ImageBackground, View, StyleSheet, Text } from 'react-native';
+import { Button } from '../components/button';
 
 export function Home({ navigation }: any) {
 
-    function GoToSittings(){
+    function GoToSittings() {
         navigation.navigate('Sittings');
     }
 
@@ -12,11 +12,13 @@ export function Home({ navigation }: any) {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../assets/tablesMobile.png')} resizeMode="cover" style={styles.image}>
-                <View style={styles.innerContainer}>
+                <View style={styles.innerContainerTitle}>
                     <Text style={styles.text}>
                         Bean Scene
                     </Text>
-                    <Button title={"Sittings List"} onPress={GoToSittings} color="#bc7be8" style={styles.button}/>
+                </View>
+                <View style={styles.innerContainerButton}>
+                    <Button title={"Sittings List"} onPress={GoToSittings} color="#6ec6f0" style={styles.button} textStyle={{ fontSize: 26 }} />
                 </View>
             </ImageBackground>
         </View>
@@ -35,21 +37,24 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        textAlign: "center",
-        width: 150,
-        height: 50,
+        justifyContent: "center",
+        width: 250,
+        height: 75,
     },
-    innerContainer:{
+    innerContainerTitle: {
+        alignItems: 'center',
+        textAlignVertical: "top",
+        flex: 0.11,
+        backgroundColor: "rgba(0, 0, 0, 1)"
+    },
+    innerContainerButton: {
         justifyContent: "center",
         alignItems: 'center',
         flex: 1,
     },
     text: {
         color: "white",
-        fontSize: 42,
-        lineHeight: 84,
+        fontSize: 52,
         fontWeight: "bold",
-        textAlign: "center",
-        backgroundColor: "#000000c0"
     }
 });

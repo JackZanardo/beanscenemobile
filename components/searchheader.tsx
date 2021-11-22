@@ -44,8 +44,8 @@ export function SearchHeader({onClick}: HeaderProps) {
 
     return (
         <View style={styles.container}>
-            <Button title="All Sittings" onPress={() => onClick("")} color="#30db5e" />
-            <Button title="Search Date" onPress={showDatePicker} color="#bc7be8"/>
+            <Button title="All Sittings" onPress={() => onClick("")} color="#6ec6f0" style={styles.buttonAllSittings} textStyle={{ fontSize: 26 }}/>
+            <Button title="Search Date" onPress={showDatePicker} color="#6ec6f0" style={styles.buttonSearch} textStyle={{ fontSize: 26 }}/>
             <DateTimePickerModal
                 isVisible={isDatePickerVisible}
                 mode="date"
@@ -58,13 +58,7 @@ export function SearchHeader({onClick}: HeaderProps) {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#e3cc66',
-        paddingTop:30,
-        paddingHorizontal:15,
-        paddingBottom: 10,
         flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'center',
     },
     input:{
         backgroundColor: '#fff',
@@ -75,6 +69,19 @@ const styles = StyleSheet.create({
         borderRadius:3,
         paddingHorizontal:15,
         paddingVertical:5,
-    }
+    },
+    buttonAllSittings: {
+        alignItems: 'center',
+        justifyContent: "center",
+        width: 196.5,
+        height: 75,
+        marginEnd: 1
+    },
+    buttonSearch: {
+        alignItems: 'center',
+        justifyContent: "center",
+        width: 195,
+        height: 75,
+    },
 
 });

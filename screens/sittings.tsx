@@ -10,11 +10,11 @@ export function Sittings({ navigation }: any){
 
     function SittingItem({item}: any){
         return(
-            <TouchableOpacity onPress={() => GoToReservations(item.Id)}>
-                <Text>Open: {item.Open}</Text>
-                <Text>Available: {item.Available}</Text>
-                <Text>Sitting Type: {item.SittingType.Name}</Text>
-                <Text>Restaurant: {item.Restaurant.Name}</Text>
+            <TouchableOpacity onPress={() => GoToReservations(item.Id)} style={styles.listItem}>
+                <Text style={styles.text}>Open: {item.Open}</Text>
+                <Text style={styles.text}>Available: {item.Available}</Text>
+                <Text style={styles.text}>Sitting Type: {item.SittingType.Name}</Text>
+                <Text style={styles.text}>Restaurant: {item.Restaurant.Name}</Text>
             </TouchableOpacity>
         );
     }
@@ -40,11 +40,11 @@ export function Sittings({ navigation }: any){
 
     return (
         <View style={styles.container}>
-            <SearchHeader onClick={searchOrGet}/>
             <ImageBackground source={require('../assets/tablesMobile.png')} resizeMode="cover" style={styles.image}>
                 <View style={styles.innerContainer}>
                     <FlatList data={sittings} renderItem={renderSittingItem} keyExtractor={item => item.Id}/>
                 </View>
+                <SearchHeader onClick={searchOrGet} />
             </ImageBackground>
         </View>
     );
@@ -64,5 +64,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: 'center',
         flex: 1,
+    },
+    text: {
+        color: "#000",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    listItem: {
+        backgroundColor: "#fff",
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingHorizontal: 10,
+        marginTop: 0.5,
+        marginBottom: 0.5,
+        borderRadius: 10
     }
 });

@@ -5,11 +5,11 @@ import {SearchReservations} from '../services/reservationservice';
 
 function ReservationItem({item}: any){
     return (
-        <View>
-            <Text>Start: {item.Start}</Text>
-            <Text>Customer Number: {item.CustomerNum}</Text>
-            <Text>Status: {item.ReservationStatus}</Text>
-            <Text>Person: {item.Person.FirstName} {item.Person.LastName}</Text>
+        <View style={styles.listItem}>
+            <Text style={styles.text}>Start: {item.Start}</Text>
+            <Text style={styles.text}>Customer Number: {item.CustomerNum}</Text>
+            <Text style={styles.text}>Status: {item.ReservationStatus}</Text>
+            <Text style={styles.text}>Person: {item.Person.FirstName} {item.Person.LastName}</Text>
         </View>
     );
 }
@@ -59,5 +59,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: 'center',
         flex: 1,
+    },
+    text: {
+        color: "#000",
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    listItem: {
+        backgroundColor: "#fff",
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingHorizontal: 10,
+        marginTop: 0.5,
+        marginBottom: 0.5,
+        borderRadius: 10
     }
 });
